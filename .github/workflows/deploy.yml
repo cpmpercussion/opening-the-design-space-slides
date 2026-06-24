@@ -15,21 +15,54 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # pandoc + a TeX Live install, so both the reveal.js HTML and the Beamer
+    # PDF can be built in CI. Alpine image -> apk + musl builds of tools.
+    container:
+      image: pandoc/latex:3.10-alpine
+      options: --user root
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Install Alpine dependencies
+        run: apk add --no-cache bash git make
 
-      - name: Install pandoc
-        uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: '3.5'
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install sass
-        run: npm install -g sass
+      - name: Mark workspace as git safe directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Build reveal.js deck
-        run: make reveal
+      - name: Install LaTeX dependencies
+        run: |
+          tlmgr update --self
+          tlmgr install libertine \
+                  sourcecodepro \
+                  ly1 \
+                  sectsty \
+                  lastpage \
+                  hanging \
+                  beamer \
+                  beamertheme-metropolis \
+                  pgfopts \
+                  beamercolorthemeowl \
+                  noto \
+                  noto-emoji
+
+      - name: Install Dart Sass
+        run: |
+          wget -O dart-sass.tar.gz https://github.com/sass/dart-sass/releases/download/1.89.2/dart-sass-1.89.2-linux-x64-musl.tar.gz
+          tar -xzf dart-sass.tar.gz -C /usr/local/
+          echo "/usr/local/dart-sass" >> $GITHUB_PATH
+          rm dart-sass.tar.gz
+          /usr/local/dart-sass/sass --version
+
+      - name: Build deck (reveal.js HTML + Beamer PDF)
+        run: make all
 
       - name: Assemble site
         run: |
@@ -37,23 +70,16 @@ jobs:
           cp build/opening-the-design-space.html _site/index.html
           cp build/reveal_dark.css _site/
           cp -r build/img _site/img
-          # Beamer PDF is committed as an asset (not rebuilt in CI); include if present
-          if [ -f opening-the-design-space.pdf ]; then
-            cp opening-the-design-space.pdf _site/
-          fi
+          cp build/opening-the-design-space.pdf _site/
 
-      - name: Upload Pages artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: ./_site
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

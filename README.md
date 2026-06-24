@@ -19,10 +19,10 @@ Building requires [pandoc](https://pandoc.org) and [Dart Sass](https://sass-lang
 ## Publishing
 
 Every push to `main` triggers `.github/workflows/deploy.yml`, which runs
-`make reveal` and deploys the result to GitHub Pages. The HTML deck is built
-fresh in CI; `opening-the-design-space.pdf` (the Beamer version) is committed as
-an asset and shipped alongside it — regenerate it with `make beamer` and commit
-when the slides change.
+`make all` inside a `pandoc/latex` container — building both the reveal.js HTML
+deck and the Beamer PDF — and deploys them to GitHub Pages. Nothing is built
+locally; the PDF download on the published site is generated in CI alongside
+the HTML.
 
 ## Source
 
