@@ -1,0 +1,59 @@
+name: Build and deploy slides
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '3.5'
+
+      - name: Install sass
+        run: npm install -g sass
+
+      - name: Build reveal.js deck
+        run: make reveal
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp build/opening-the-design-space.html _site/index.html
+          cp build/reveal_dark.css _site/
+          cp -r build/img _site/img
+          # Beamer PDF is committed as an asset (not rebuilt in CI); include if present
+          if [ -f opening-the-design-space.pdf ]; then
+            cp opening-the-design-space.pdf _site/
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

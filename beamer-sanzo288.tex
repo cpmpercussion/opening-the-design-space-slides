@@ -1,0 +1,36 @@
+% Sanzo Wada combination 288 — palette overrides for the Beamer (metropolis) build.
+% Mirrors the role mapping used in css/reveal_dark.scss so the PDF and HTML
+% decks share a look. Loaded via --include-in-header from the Makefile.
+
+\definecolor{swOrange}{HTML}{FF8C00}
+\definecolor{swOlive}{HTML}{503D00}
+\definecolor{swPurple}{HTML}{6B2E63}
+\definecolor{swBlack}{HTML}{000000}
+\definecolor{swText}{HTML}{FAFAFA}
+
+% Page background + body text (metropolis takes the canvas colour from here).
+\setbeamercolor{normal text}{fg=swText, bg=swBlack}
+\setbeamercolor{alerted text}{fg=swOrange}   % emphasis / **strong**
+\setbeamercolor{example text}{fg=swPurple}
+
+% Frame titles: olive bar with light text, matching the reveal accent bar.
+\setbeamercolor{frametitle}{bg=swOlive, fg=swText}
+
+% Orange accents: title-slide rule, progress bars, section pages.
+\setbeamercolor{title separator}{fg=swOrange}
+\setbeamercolor{progress bar}{fg=swOrange}
+\setbeamercolor{progress bar in head/foot}{fg=swOrange}
+\setbeamercolor{progress bar in section page}{fg=swOrange}
+
+% Standout ("impact") frames use the purple as their fill.
+\setbeamercolor{palette primary}{bg=swPurple, fg=swText}
+
+% Bullets and block accents in orange.
+\setbeamercolor{itemize item}{fg=swOrange}
+\setbeamercolor{itemize subitem}{fg=swOrange}
+\setbeamercolor{enumerate item}{fg=swOrange}
+
+% Links / citations in orange (set after hyperref loads to avoid an option clash).
+\AtBeginDocument{%
+  \hypersetup{colorlinks=true, linkcolor=swOrange, urlcolor=swOrange, citecolor=swOrange}%
+}
