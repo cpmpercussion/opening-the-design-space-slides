@@ -162,103 +162,69 @@ Quantitative testing isn't the focus, but the headline is: even the cheapest Pi 
 Methods slide. keep it brief. First-person artistic research is the right first step for exposing design possibilities; broader artist-centred studies are future work. Mention the videos here so people can look them up.
 :::
 
-## The Intelligent Volca: proof of concept (rejected NIME 2024 demo!)
+<!--
+Instrument slides: each is a fullscreen background video with only the
+instrument name over it. Drop the footage into video/ (see video/README.md)
+using the filenames below, then `make reveal`. Until then the background is
+just black. The former bullet content + image lives in each slide's :::notes.
 
-::::::::::::::{.columns}
+background-video-loop / -muted keep the footage running silently behind the
+name; background-size="cover" fills the frame.
+-->
 
-:::{.column width="55%"}
+## The Intelligent Volca {.instrument background-video="video/volca.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
-![](img/outside-1.jpg)
+:::notes
+Proof of concept — the rejected NIME 2024 demo. First experiment, fully self-contained and battery powered; the Volca even has its own speaker. The key realisation: the model, trained on expressive continuous control, might be better at smoothly varying synthesis parameters than at playing notes.
 
-:::
-
-:::{.column width="45%"}
-
+Slide points:
 - Pi Zero, two resistors, UART MIDI, into a battery-powered Korg Volca FM
 - AI controlled pitch and rhythm; I shaped the timbre
-- **One-way only**. The Volca FM has no MIDI out
+- One-way only. The Volca FM has no MIDI out
 - Glissandi from a model trained on continuous gesture (a bit weird)
-
 :::
 
-::::::::::::::
+## The Intelligent MicroFreak {.instrument background-video="video/microfreak.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
-First experiment, fully self-contained and battery powered. the Volca even has its own speaker. The key realisation: the model, trained on expressive continuous control, might be better at smoothly varying synthesis parameters than at playing notes.
+First of the two-way, USB-MIDI synths. This is where it got musically interesting: the AI updates timbral parameters between phrases and even between notes, something I'd never do playing normally.
+
+Slide points:
+- USB-MIDI synths enable shared human–AI control: notes + seven timbral knobs
+- Call-and-response: AI takes over when I stop… switch-over set to 0.1 s
+- AI turns many knobs at once: inhuman but exciting exploration of a synth
 :::
 
-## The Intelligent MicroFreak & S-1: two-way interaction
-
-::::::::::::::{.columns}
-
-:::{.column width="50%"}
-
-![](img/intelligent-microfreak-169.jpg)
-
-:::
-
-:::{.column width="50%"}
-
-![](img/intelligent-s-1.jpg)
-
-:::
-
-::::::::::::::
-
-- USB-MIDI synths enable **shared human–AI control**: notes + seven timbral knobs
-- Call-and-response: AI takes over when I stop… switch-over set to **0.1 s**
-- AI turns many knobs at once: *inhuman but exciting* exploration of a synth
+## The Intelligent S-1 {.instrument background-video="video/s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
-This is where it got musically interesting. The AI updates timbral parameters between phrases and even between notes,  something I'd never do playing normally. Cranking the call-and-response switch-over down to 0.1 seconds was the pivotal move; it becomes interleaving rather than turn-taking. On the S-1 the tiny keyboard pushed me towards parameter play, letting the AI handle notes.
+Cranking the call-and-response switch-over down to 0.1 seconds was the pivotal move; it becomes interleaving rather than turn-taking. On the S-1 the tiny keyboard pushed me towards parameter play, letting the AI handle notes.
+
+Slide points:
+- Shared human–AI control over notes + seven timbral knobs
+- Tiny keyboard nudged me toward parameter play, AI handling the notes
 :::
 
-## The Intelligent DAW: remapping as design
+## The Intelligent DAW {.instrument background-video="video/daw.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
-::::::::::::::{.columns}
+:::notes
+Remapping as design. DAWs are highly configurable on the MIDI side, so the combination is a fast design playground. The important experience: I could move AI signals to wherever they were musically useful and completely change the instrument's sound with the same trained model, untouched.
 
-:::{.column width="55%"}
-
-![](img/ipad-perf-2.jpg)
-
-:::
-
-:::{.column width="45%"}
-
+Slide points:
 - AUM on iPad connected to the Pi over a cheap USB MIDI interface
 - 8 channels in, 8 out, routed freely to software synths and effects
-- Swap synths, remap signals, **evolve the instrument without retraining**
-
+- Swap synths, remap signals, evolve the instrument without retraining
 :::
 
-::::::::::::::
+## The Intelligent Setup {.instrument background-video="video/setup.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
-DAWs are highly configurable on the MIDI side, so the combination is a fast design playground. The important experience: I could move AI signals to wherever they were musically useful and completely change the instrument's sound with the same trained model, untouched.
-:::
+Multiple interfaces, one model. The mapping capability grew until the AI sat between multiple interfaces, each capable of input and output. The QuNeo setup finally felt like a comfortable, expressive instrument used in three festival performances with very different ensembles, from sparse acoustic textures to walls of noise. Visual feedback was what made the unruly instrument manageable.
 
-## Intelligent Setups: multiple interfaces, one model
-
-::::::::::::::{.columns}
-
-:::{.column width="55%"}
-
-![](img/impsy-s1-soundout-2026-1000px.jpg)
-
-:::
-
-:::{.column width="45%"}
-
+Slide points:
 - AI mediates between devices: S-1 + X-Touch Mini, then S-1 + QuNeo
-- LED rings / touch strips = **visual feedback** on what the AI is doing
+- LED rings / touch strips = visual feedback on what the AI is doing
 - Different control gestures = different ways to manage the unfolding AI process
-
-:::
-
-::::::::::::::
-
-:::notes
-The mapping capability grew until the AI sat between multiple interfaces, each capable of input and output. The QuNeo setup finally felt like a comfortable, expressive instrument used in three festival performances with very different ensembles, from sparse acoustic textures to walls of noise. Visual feedback was what made the unruly instrument manageable.
 :::
 
 # Four design insights

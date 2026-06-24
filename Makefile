@@ -50,7 +50,7 @@ export TEXINPUTS := $(CURDIR):$(TEXINPUTS)
 all: reveal beamer
 
 .PHONY: reveal
-reveal: $(OUTPUT_DIR) images $(OUTPUT_DIR)/reveal_dark.css $(REVEAL_HTMLS)
+reveal: $(OUTPUT_DIR) images videos $(OUTPUT_DIR)/reveal_dark.css $(REVEAL_HTMLS)
 
 $(OUTPUT_DIR)/%.html: %.md $(REFERENCES)
 	$(PANDOC) $(PANDOC_COMMON_OPTS) $(REVEAL_OPTS) $< -o $@
@@ -69,6 +69,18 @@ IMG_BUILD_FILES := $(patsubst img/%,$(OUTPUT_DIR)/img/%,$(IMG_FILES))
 images: $(IMG_BUILD_FILES)
 
 $(OUTPUT_DIR)/img/%: img/%
+	@mkdir -p $(dir $@)
+	cp $< $@
+
+# Videos — fullscreen backgrounds for the instrument slides. Copied alongside
+# the HTML like images. Empty until footage is dropped into video/.
+VIDEO_FILES       := $(wildcard video/*.mp4 video/*.webm video/*.mov)
+VIDEO_BUILD_FILES := $(patsubst video/%,$(OUTPUT_DIR)/video/%,$(VIDEO_FILES))
+
+.PHONY: videos
+videos: $(VIDEO_BUILD_FILES)
+
+$(OUTPUT_DIR)/video/%: video/%
 	@mkdir -p $(dir $@)
 	cp $< $@
 

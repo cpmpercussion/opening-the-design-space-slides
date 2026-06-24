@@ -70,6 +70,7 @@ jobs:
           cp build/opening-the-design-space.html _site/index.html
           cp build/reveal_dark.css _site/
           cp -r build/img _site/img
+          [ -d build/video ] && cp -r build/video _site/video || true
           cp build/opening-the-design-space.pdf _site/
 
       - name: Setup Pages

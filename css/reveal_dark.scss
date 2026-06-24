@@ -210,6 +210,27 @@ $extensionColour: #9b59b6;
 		a { color: color.adjust($highlight-color, $lightness: 30%); }
     }
 
+    // instrument slides: a fullscreen background video with only the
+    // instrument name laid over it (set the video via the heading's
+    // background-video attribute). Centred title-card treatment.
+    &.instrument {
+        text-align: center;
+        // push the name into the lower third, over the video
+        margin-top: 62vh;
+
+        h2 {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: $text-color;
+            // dark scrim so the name stays legible over any footage
+            background-color: color.adjust($background-color, $alpha: -0.3);
+            padding: 0.3em 0.6em;
+            border-bottom: 5px solid $highlight-color;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+        }
+    }
+
 	// source code display
 	code {
 		font-family: "Courier", monospace;
