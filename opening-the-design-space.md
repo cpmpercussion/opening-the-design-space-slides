@@ -172,7 +172,7 @@ background-video-loop / -muted keep the footage running silently behind the
 name; background-size="cover" fills the frame.
 -->
 
-## The Intelligent Volca {.instrument background-video="video/volca.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent Volca {.instrument background-video="video/1-intelligent-volca.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
 Proof of concept — the rejected NIME 2024 demo. First experiment, fully self-contained and battery powered; the Volca even has its own speaker. The key realisation: the model, trained on expressive continuous control, might be better at smoothly varying synthesis parameters than at playing notes.
@@ -184,7 +184,7 @@ Slide points:
 - Glissandi from a model trained on continuous gesture (a bit weird)
 :::
 
-## The Intelligent MicroFreak {.instrument background-video="video/microfreak.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent MicroFreak {.instrument background-video="video/2-intelligent-microfreak.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
 First of the two-way, USB-MIDI synths. This is where it got musically interesting: the AI updates timbral parameters between phrases and even between notes, something I'd never do playing normally.
@@ -195,7 +195,7 @@ Slide points:
 - AI turns many knobs at once: inhuman but exciting exploration of a synth
 :::
 
-## The Intelligent S-1 {.instrument background-video="video/s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent S-1 {.instrument background-video="video/3-intelligent-s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
 Cranking the call-and-response switch-over down to 0.1 seconds was the pivotal move; it becomes interleaving rather than turn-taking. On the S-1 the tiny keyboard pushed me towards parameter play, letting the AI handle notes.
@@ -205,7 +205,7 @@ Slide points:
 - Tiny keyboard nudged me toward parameter play, AI handling the notes
 :::
 
-## The Intelligent DAW {.instrument background-video="video/daw.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent DAW {.instrument background-video="video/4-intelligent-daw.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
 Remapping as design. DAWs are highly configurable on the MIDI side, so the combination is a fast design playground. The important experience: I could move AI signals to wherever they were musically useful and completely change the instrument's sound with the same trained model, untouched.
@@ -216,7 +216,7 @@ Slide points:
 - Swap synths, remap signals, evolve the instrument without retraining
 :::
 
-## The Intelligent Setup {.instrument background-video="video/setup.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent Setup {.instrument background-video="video/5-intelligent-setup.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
 
 :::notes
 Multiple interfaces, one model. The mapping capability grew until the AI sat between multiple interfaces, each capable of input and output. The QuNeo setup finally felt like a comfortable, expressive instrument used in three festival performances with very different ensembles, from sparse acoustic textures to walls of noise. Visual feedback was what made the unruly instrument manageable.
