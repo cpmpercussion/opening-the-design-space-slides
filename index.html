@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Charles Patrick Martin — The Australian National University">
+  <title>Opening the Design Space</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^5/dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^5/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^5/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="reveal_dark.css"/>
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="img/impsy-s1-soundout-2026-1000px.jpg" data-background-size="cover">
+  <h1 class="title">Opening the Design Space</h1>
+  <p class="subtitle">Two Years of Performance with Intelligent Musical
+Instruments</p>
+  <p class="author">Charles Patrick Martin — The Australian National
+University</p>
+  <p class="date">NIME ’26: London, June 2026</p>
+</section>
+
+<section id="about-charles" class="slide level2">
+<h2>About Charles 🤖🎶🥁📝</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Charles Martin</strong></p>
+<ul>
+<li>computer scientist, music technology researcher, performer</li>
+<li>postdoc at UiO 2016–2019 (EPEC Project)</li>
+<li>Senior Lecturer at Australian National University, School of
+Computing</li>
+<li><strong>researching</strong> human-AI creative collaboration,
+including creating new ML models, new musical instruments, HCI and
+artistic research in musical collaboration</li>
+<li><strong>teaching</strong> HCI, music computing, systems, creative
+coding, etc.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<figure>
+<img data-src="img/charles-soundout.jpg" alt="Charles playing synths" />
+<figcaption aria-hidden="true">Charles playing synths</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section>
+<section id="why-intelligent-instruments"
+class="title-slide slide level1">
+<h1>Why intelligent instruments?</h1>
+
+</section>
+<section
+id="generative-ai-is-all-over-music-but-mostly-not-in-instruments"
+class="slide level2">
+<h2>Generative AI is all over music, but mostly not in instruments</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>We’re aware of the threats and concerns about <em>AI generated
+music</em>.</li>
+<li>But few digital musical instruments integrate generative AI into
+<em>ordinary musical practice</em> <span class="citation"
+data-cites="jourdan_nime_ml_review">(<a
+href="#/ref-jourdan_nime_ml_review" role="doc-biblioref">Jourdan &amp;
+Caramiaux, 2023</a>)</span></li>
+<li>Many musical AI tools aren’t artist-centred: hard to experiment
+with, embed, modify (exceptions: RAVE, Wekinator)</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/soundout2026-7.jpg" /></p>
+</div>
+</div>
+<!-- _Exceptions:_ RAVE, IML system (?), Wekinator. -->
+<!-- TODO links and cites for RAVE, iml, wekinator -->
+<p><strong>Question:</strong> what does the design space for intelligent
+musical instruments look like when <em>accessible and portable</em> AI
+is available for artistic exploration?</p>
+<!-- Another question, can genAI be integrated into portable, electronic music setups? -->
+<aside class="notes">
+<p>Hook: everyone is talking about generative AI music, but where are
+the instruments? Jourdan and Caramiaux identified gaps in interactivity
+and practice. As DL systems got more complex, artists got less contact
+with data and training. This talk is about closing that gap with cheap,
+portable hardware and small models.</p>
+</aside>
+</section>
+<section id="whats-an-intelligent-musical-instrument"
+class="slide level2">
+<h2>What’s an <em>intelligent</em> musical instrument?</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>An instrument where an AI system <strong>generates actions
+independently</strong> of the musician’s actions</li>
+<li>Includes Continuator <span class="citation"
+data-cites="Pachet:2003wd">(<a href="#/ref-Pachet:2003wd"
+role="doc-biblioref">Pachet, 2003</a>)</span> and Voyager <span
+class="citation" data-cites="Lewis:2000fu">(<a href="#/ref-Lewis:2000fu"
+role="doc-biblioref">Lewis, 2000</a>)</span></li>
+<li>Excludes mapping-only systems like Wekinator <span class="citation"
+data-cites="fiebrink_meta-instrument_2009">(<a
+href="#/ref-fiebrink_meta-instrument_2009" role="doc-biblioref">Fiebrink
+et al., 2009</a>)</span></li>
+<li>This work takes a <strong>small-data</strong> approach <span
+class="citation" data-cites="Vigliensoni:2022">(<a
+href="#/ref-Vigliensoni:2022" role="doc-biblioref">Vigliensoni et al.,
+2022</a>)</span>: artists collect, curate, train, and deploy their own
+AI</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/garage-concert-arturia.jpg" /></p>
+</div>
+</div>
+<p><strong>Q: Are RAVE systems intelligent?</strong> A: I think it
+depends.</p>
+<aside class="notes">
+<p>The definition matters: AI acting independently, not just
+interpreting sensor data. And the small-data mindset is the ethical and
+practical counterpoint to industrial-scale AI. Everything in this
+project was trained on my own data on a normal laptop.</p>
+</aside>
+</section></section>
+<section>
+<section id="the-platform-impsy" class="title-slide slide level1">
+<h1>The platform: IMPSY</h1>
+
+</section>
+<section id="squeeze-generative-ai-into-a-midi-plug"
+class="slide level2">
+<h2>Squeeze Generative AI into a MIDI Plug</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Python software + Raspberry Pi + custom OS image <span
+class="citation" data-cites="impsy_software_zenodo">(<a
+href="#/ref-impsy_software_zenodo" role="doc-biblioref">Martin,
+2026</a>)</span></li>
+<li>Makes <strong>no sound</strong></li>
+<li>listens and speaks MIDI (or OSC/WebSockets)</li>
+</ul>
+<p><strong>Howto:</strong> Flash an SD card, configure in a web browser,
+boots and play.</p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/gen-ai-system-diagram.png" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>The platform is deliberately minimal: it doesn’t produce audio, it
+controls other instruments. That’s what lets it retrofit existing synths
+and DAWs. Pre-installed OS image means no Python wrangling for users,
+boot and go.</p>
+</aside>
+</section>
+<section id="the-ai-model-small-but-musical" class="slide level2">
+<h2>The AI model: small but musical</h2>
+<ul>
+<li>Mixture density recurrent neural network (MDRNN) <span
+class="citation" data-cites="Martin2019">(<a href="#/ref-Martin2019"
+role="doc-biblioref">Martin &amp; Torresen, 2019</a>)</span></li>
+<li>Generates tuples: 1–8 musical values <strong>plus a time
+delta</strong> (free rhythm, no grid)</li>
+<li>Typical model: 2 layers of 64 LSTM units. <em>Tiny</em> by genAI
+standards</li>
+<li>Trains in <strong>under 30 minutes</strong> on a normal laptop, from
+artist-collected data</li>
+</ul>
+</section>
+<section id="cheap-small-battery-powered" class="slide level2">
+<h2>Cheap, small, battery-powered</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3 id="impsy-is-light-and-fast">IMPSY is light and fast</h3>
+<ul>
+<li>Runs on any 64-bit Raspberry Pi, including the <strong>Zero 2 W (15
+USD)</strong>, small enough to hide inside an instrument</li>
+<li>MIDI via USB interface, direct USB-MIDI, or two resistors on the
+UART pins</li>
+<li>Web interface for mappings, logged data, and model upload</li>
+</ul>
+<!-- TODO: new web interface screenshot. -->
+</div><div class="column" style="width:45%;">
+<p><img data-src="img/impsy-web-interface.png" /></p>
+</div>
+</div>
+</section>
+<section id="fast-enough-for-performance" class="slide level2">
+<h2>Fast enough for performance?</h2>
+<figure>
+<img data-src="img/prediction_time_against_units_facet_log.png"
+style="width:75.0%"
+alt="Average per-sample inference with model sizes up to 512 LSTM units." />
+<figcaption aria-hidden="true">Average per-sample inference with model
+sizes up to 512 LSTM units.</figcaption>
+</figure>
+<ul>
+<li>Every Pi runs inference in <strong>&lt; 5 ms</strong> (tflite); Pi 5
+under 0.5 ms</li>
+<li>Critical to use embedded inference engine <em>tflite</em> (now
+called <em>litert</em>).</li>
+<li>Boot-to-first-note: 114 s (Zero 2 W) down to 38 s (Pi 5)</li>
+</ul>
+<aside class="notes">
+<p>Quantitative testing isn’t the focus, but the headline is: even the
+cheapest Pi is comfortably inside the 10ms benchmark from earlier work.
+Boot time turned out to matter more than inference time in practice, it
+shapes how you trust a system at a gig.</p>
+</aside>
+</section></section>
+<section>
+<section id="two-years-five-instruments"
+class="title-slide slide level1">
+<h1>Two years, five instruments</h1>
+
+</section>
+<section id="first-person-artistic-research" class="slide level2">
+<h2>First-person artistic research</h2>
+<ul>
+<li>Autobiographical design: instruments built for <strong>my own
+performance practice</strong> and tested in real gigs</li>
+<li>15 performances and recordings (2024–2026); solo, duo, and group
+free improvisation</li>
+<li>Five intelligent instruments: <strong>Volca, MicroFreak, S-1, DAW,
+Setup</strong></li>
+<li>Demo videos: <a href="https://doi.org/10.5281/zenodo.19550146"
+class="uri">https://doi.org/10.5281/zenodo.19550146</a></li>
+</ul>
+<aside class="notes">
+<p>Methods slide. keep it brief. First-person artistic research is the
+right first step for exposing design possibilities; broader
+artist-centred studies are future work. Mention the videos here so
+people can look them up.</p>
+</aside>
+</section>
+<section
+id="the-intelligent-volca-proof-of-concept-rejected-nime-2024-demo"
+class="slide level2">
+<h2>The Intelligent Volca: proof of concept (rejected NIME 2024
+demo!)</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="img/outside-1.jpg" /></p>
+</div><div class="column" style="width:45%;">
+<ul>
+<li>Pi Zero, two resistors, UART MIDI, into a battery-powered Korg Volca
+FM</li>
+<li>AI controlled pitch and rhythm; I shaped the timbre</li>
+<li><strong>One-way only</strong>. The Volca FM has no MIDI out</li>
+<li>Glissandi from a model trained on continuous gesture (a bit
+weird)</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>First experiment, fully self-contained and battery powered. the Volca
+even has its own speaker. The key realisation: the model, trained on
+expressive continuous control, might be better at smoothly varying
+synthesis parameters than at playing notes.</p>
+</aside>
+</section>
+<section id="the-intelligent-microfreak-s-1-two-way-interaction"
+class="slide level2">
+<h2>The Intelligent MicroFreak &amp; S-1: two-way interaction</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="img/intelligent-microfreak-169.jpg" /></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="img/intelligent-s-1.jpg" /></p>
+</div>
+</div>
+<ul>
+<li>USB-MIDI synths enable <strong>shared human–AI control</strong>:
+notes + seven timbral knobs</li>
+<li>Call-and-response: AI takes over when I stop… switch-over set to
+<strong>0.1 s</strong></li>
+<li>AI turns many knobs at once: <em>inhuman but exciting</em>
+exploration of a synth</li>
+</ul>
+<aside class="notes">
+<p>This is where it got musically interesting. The AI updates timbral
+parameters between phrases and even between notes, something I’d never
+do playing normally. Cranking the call-and-response switch-over down to
+0.1 seconds was the pivotal move; it becomes interleaving rather than
+turn-taking. On the S-1 the tiny keyboard pushed me towards parameter
+play, letting the AI handle notes.</p>
+</aside>
+</section>
+<section id="the-intelligent-daw-remapping-as-design"
+class="slide level2">
+<h2>The Intelligent DAW: remapping as design</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="img/ipad-perf-2.jpg" /></p>
+</div><div class="column" style="width:45%;">
+<ul>
+<li>AUM on iPad connected to the Pi over a cheap USB MIDI interface</li>
+<li>8 channels in, 8 out, routed freely to software synths and
+effects</li>
+<li>Swap synths, remap signals, <strong>evolve the instrument without
+retraining</strong></li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>DAWs are highly configurable on the MIDI side, so the combination is
+a fast design playground. The important experience: I could move AI
+signals to wherever they were musically useful and completely change the
+instrument’s sound with the same trained model, untouched.</p>
+</aside>
+</section>
+<section id="intelligent-setups-multiple-interfaces-one-model"
+class="slide level2">
+<h2>Intelligent Setups: multiple interfaces, one model</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="img/impsy-s1-soundout-2026-1000px.jpg" /></p>
+</div><div class="column" style="width:45%;">
+<ul>
+<li>AI mediates between devices: S-1 + X-Touch Mini, then S-1 +
+QuNeo</li>
+<li>LED rings / touch strips = <strong>visual feedback</strong> on what
+the AI is doing</li>
+<li>Different control gestures = different ways to manage the unfolding
+AI process</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>The mapping capability grew until the AI sat between multiple
+interfaces, each capable of input and output. The QuNeo setup finally
+felt like a comfortable, expressive instrument used in three festival
+performances with very different ensembles, from sparse acoustic
+textures to walls of noise. Visual feedback was what made the unruly
+instrument manageable.</p>
+</aside>
+</section></section>
+<section>
+<section id="four-design-insights" class="title-slide slide level1">
+<h1>Four design insights</h1>
+
+</section>
+<section id="remapping-can-replace-retraining" class="slide level2">
+<h2>1. (Re)mapping can replace retraining</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Changing how the model connects to controls and parameters opened
+new instruments <em>without touching the model</em></li>
+<li>Retraining costs minutes to hours (or days for audio models);
+remapping is instant</li>
+<li>Focus AI on what a musician <strong>cannot do</strong>: turn five
+knobs at once, not play the melody</li>
+</ul>
+<p>Remapping is sustainable and responsive design iteration.</p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/s-1-midi-mapping-toml.jpg" /></p>
+</div>
+</div>
+</section>
+<section id="fast-interleaving-is-a-co-creative-strategy"
+class="slide level2">
+<h2>2. Fast interleaving is a co-creative strategy</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>0.1 s switch-over between human and AI control: a new interaction
+approach</li>
+<li>Not a separate “agent”; more like a <strong>free-running
+process</strong> you guide but don’t fully control</li>
+<li>Natural performance gestures instantly <em>rescue</em> the
+instrument from unwanted sounds <span class="citation"
+data-cites="stefansdottir_intelligent_2025">(<a
+href="#/ref-stefansdottir_intelligent_2025"
+role="doc-biblioref">Stefánsdóttir &amp; Magnusson,
+2025</a>)</span></li>
+</ul>
+<p><strong>Musically productive and fun</strong></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/impsy-s-1-square.jpg" /></p>
+</div>
+</div>
+</section>
+<section id="small-data-models-are-transportable-components"
+class="slide level2">
+<h2>3. Small-data models are transportable components</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><strong>One model</strong>, trained once on my own data, served all
+five instruments</li>
+<li>Like a trusted effects pedal: a design component you get to know
+over years</li>
+<li>Challenges the assumption that AI needs unethically sourced data and
+unsustainable compute</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/intelligent-daw-aum-dhg.jpg" /></p>
+</div>
+</div>
+</section>
+<section id="cheap-hardware-lowers-barriers" class="slide level2">
+<h2>4. Cheap hardware lowers barriers</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Works on a 15 USD computer: multiple Pis for group performances,
+loans, dedicated instruments</li>
+<li>MIDI lets you <strong>retrofit existing instruments</strong> rather
+than build new ones</li>
+<li>Inclusion <em>and</em> sustainability: reuse what musicians already
+own</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/rpi-zero-midi-plug.jpg" /></p>
+</div>
+</div>
+</section>
+<section id="whats-next" class="slide level2">
+<h2>What’s next?</h2>
+<p><img data-src="img/impsy-app-ableton.png" style="width:75.0%" /></p>
+<p>Make it an app! Stop using Raspberry Pis!</p>
+</section>
+<section id="available-now-from-the-apple-app-store"
+class="slide level2">
+<h2>Available Now from the Apple App Store</h2>
+<p><img data-src="img/impsy-macos-trio-dark.png"
+style="width:75.0%" /></p>
+<p>Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx
+unit.</p>
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li>A platform for prototyping intelligent musical instruments that is
+cheap, small, and artist-centred</li>
+<li>Five instruments, 15 performances, two years of practice</li>
+<li>The design space is <strong>still opening</strong>: remapping,
+interleaving, transportable models, accessible hardware</li>
+<li>Next: model evolution over time, and co-design with other
+artists</li>
+</ul>
+</section>
+<section id="thanks" class="slide level2">
+<h2>Thanks!</h2>
+<div class="questions">
+<p><strong>Questions?</strong></p>
+<ul>
+<li>Software: <a href="https://github.com/cpmpercussion/impsy"
+class="uri">https://github.com/cpmpercussion/impsy</a></li>
+<li>Videos: <a href="https://doi.org/10.5281/zenodo.19550146"
+class="uri">https://doi.org/10.5281/zenodo.19550146</a></li>
+<li>charles.martin@anu.edu.au</li>
+</ul>
+</div>
+</section>
+<section id="references" class="slide level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-fiebrink_meta-instrument_2009" class="csl-entry"
+role="listitem">
+Fiebrink, R., Trueman, D., &amp; Cook, P. R. (2009). A
+<span>Meta</span>-<span>Instrument</span> for <span>Interactive</span>,
+<span>On</span>-the-fly <span>Machine</span> <span>Learning</span>.
+<em>Proc. <span>NIME</span></em>, 280–285.
+</div>
+<div id="ref-jourdan_nime_ml_review" class="csl-entry" role="listitem">
+Jourdan, T., &amp; Caramiaux, B. (2023). Machine learning for musical
+expression: A systematic literature review. <em>Proceedings of the
+International Conference on New Interfaces for Musical Expression</em>.
+<a
+href="http://nime.org/proceedings/2023/nime2023_46.pdf">http://nime.org/proceedings/2023/nime2023_46.pdf</a>
+</div>
+<div id="ref-Lewis:2000fu" class="csl-entry" role="listitem">
+Lewis, G. E. (2000). Too many notes: Computers, complexity and culture
+in <span>“<span>V</span>oyager.”</span> <em>Leonardo Music Journal</em>,
+<em>10</em>, 33–39. <a
+href="https://doi.org/10.1162/096112100570585">https://doi.org/10.1162/096112100570585</a>
+</div>
+<div id="ref-impsy_software_zenodo" class="csl-entry" role="listitem">
+Martin, C. P. (2026). <em>IMPSY: An intelligent musical instrument
+platform</em> (Versions v0.7.0-alpha) [Computer software]. Zenodo. <a
+href="https://doi.org/10.5281/zenodo.2580175">https://doi.org/10.5281/zenodo.2580175</a>
+</div>
+<div id="ref-Martin2019" class="csl-entry" role="listitem">
+Martin, C. P., &amp; Torresen, J. (2019). An interactive musical
+prediction system with mixture density recurrent neural networks.
+<em>Proceedings of the International Conference on New Interfaces for
+Musical Expression</em>, 260–265. <a
+href="https://doi.org/10.5281/zenodo.3672952">https://doi.org/10.5281/zenodo.3672952</a>
+</div>
+<div id="ref-Pachet:2003wd" class="csl-entry" role="listitem">
+Pachet, F. (2003). The continuator: Musical interaction with style.
+<em>Journal of New Music Research</em>, <em>32</em>(3), 333–341. <a
+href="https://doi.org/10.1076/jnmr.32.3.333.16861">https://doi.org/10.1076/jnmr.32.3.333.16861</a>
+</div>
+<div id="ref-stefansdottir_intelligent_2025" class="csl-entry"
+role="listitem">
+Stefánsdóttir, H. S., &amp; Magnusson, T. (2025). Of altered
+instrumental relations: A practice-led inquiry into agency through
+musical performance with neural audio synthesis and violin.
+<em>Frontiers in Computer Science</em>, <em>Volume 7 - 2025</em>. <a
+href="https://doi.org/10.3389/fcomp.2025.1578595">https://doi.org/10.3389/fcomp.2025.1578595</a>
+</div>
+<div id="ref-Vigliensoni:2022" class="csl-entry" role="listitem">
+Vigliensoni, G., Perry, P., &amp; Fiebrink, R. (2022). A small-data
+mindset for generative AI creative work. <em>Proceedings of the CHI 2022
+Workshop on Generative AI and HCI</em>. <a
+href="https://doi.org/10.5281/zenodo.7086327">https://doi.org/10.5281/zenodo.7086327</a>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^5/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^5/plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^5/plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^5/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
