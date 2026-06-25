@@ -14,24 +14,7 @@ title-slide-attributes:
   data-background-size: cover
 ---
 
-## About Charles 🤖🎶🥁📝
-
-:::::::::::::: {.columns}
-::: {.column width="60%"}
-**Charles Martin**
-
-- computer scientist, music technology researcher, performer
-- postdoc at UiO 2016--2019 (EPEC Project)
-- Senior Lecturer at Australian National University, School of Computing
-- **researching** human-AI creative collaboration, including creating new ML models, new musical instruments, HCI and artistic research in musical collaboration
-- **teaching** HCI, music computing, systems, creative coding, etc.
-:::
-::: {.column width="40%"}
-![Charles playing synths](img/charles-soundout.jpg)
-:::
-::::::::::::::
-
-# Why intelligent instruments?
+## Why intelligent instruments? {background-image="img/intelligent-s-1.jpg"}
 
 ## Generative AI is all over music, but mostly not in instruments
 
@@ -39,7 +22,7 @@ title-slide-attributes:
 ::: {.column width="60%"}
 
 - We're aware of the threats and concerns about _AI generated music_.
-- But few digital musical instruments integrate generative AI into *ordinary musical practice* [@jourdan_nime_ml_review]
+- But few digital musical instruments integrate generative AI into *long-term musical practice* [@jourdan_nime_ml_review]
 - Many musical AI tools aren't artist-centred: hard to experiment with, embed, modify (exceptions: RAVE, Wekinator)
 
 :::
@@ -81,18 +64,17 @@ Hook: everyone is talking about generative AI music, but where are the instrumen
 The definition matters: AI acting independently, not just interpreting sensor data. And the small-data mindset is the ethical and practical counterpoint to industrial-scale AI. Everything in this project was trained on my own data on a normal laptop.
 :::
 
-# The platform: IMPSY
-
-## Squeeze Generative AI into a MIDI Plug
+## The platform: IMPSY 
 
 :::::::::::::: {.columns}
 ::: {.column width="60%"}
 
+- "Squeeze Generative AI into a MIDI Plug"
 - Python software + Raspberry Pi + custom OS image [@impsy_software_zenodo]
 - Makes **no sound**
 - listens and speaks MIDI (or OSC/WebSockets)
 
-**Howto:** Flash an SD card, configure in a web browser, boots and play.
+**Howto:** Flash an SD card, configure in a web browser, plug in and play.
 
 :::
 ::: {.column width="40%"}
@@ -119,9 +101,7 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 
 :::{.column width="55%"}
 
-### IMPSY is light and fast
-
-- Runs on any 64-bit Raspberry Pi, including the **Zero 2 W (15 USD)**, small enough to hide inside an instrument
+- IMPSY runs on any 64-bit Raspberry Pi, including the **Zero 2 W (15 USD)**, small enough to hide inside an instrument
 - MIDI via USB interface, direct USB-MIDI, or two resistors on the UART pins
 - Web interface for mappings, logged data, and model upload
 
@@ -135,7 +115,7 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 
 ::::::::::::::
 
-## Fast enough for performance?
+## Is it fast enough?
 
 ![Average per-sample inference with model sizes up to 512 LSTM units.](img/prediction_time_against_units_facet_log.png){width=75%}
 
@@ -147,9 +127,7 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 Quantitative testing isn't the focus, but the headline is: even the cheapest Pi is comfortably inside the 10ms benchmark from earlier work. Boot time turned out to matter more than inference time in practice, it shapes how you trust a system at a gig.
 :::
 
-# Two years, five instruments
-
-## First-person artistic research
+## Two years of performances with five instruments
 
 - Autobiographical design: instruments built for **my own performance practice** and tested in real gigs
 - 15 performances and recordings (2024--2026); solo, duo, and group free improvisation
@@ -188,13 +166,9 @@ name; background-size="cover" fills the frame.
 
 :::notes
 Proof of concept — the rejected NIME 2024 demo. First experiment, fully self-contained and battery powered; the Volca even has its own speaker. The key realisation: the model, trained on expressive continuous control, might be better at smoothly varying synthesis parameters than at playing notes.
-
-Slide points:
-- Pi Zero, two resistors, UART MIDI, into a battery-powered Korg Volca FM
-- AI controlled pitch and rhythm; I shaped the timbre
-- One-way only. The Volca FM has no MIDI out
-- Glissandi from a model trained on continuous gesture (a bit weird)
 :::
+
+## The Intelligent Volca (with sound!) {background-video="video/1-intelligent-volca.mp4" background-video-loop="true" background-size="cover"}
 
 ## The Intelligent MicroFreak {background-video="video/2-intelligent-microfreak.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
 
@@ -216,6 +190,8 @@ First of the two-way, USB-MIDI synths. This is where it got musically interestin
 
 :::
 
+## The Intelligent MicroFreak (sound!) {background-video="video/2-intelligent-microfreak.mp4" background-video-loop="true"  background-size="cover"}
+
 ## The Intelligent S-1 { background-video="video/3-intelligent-s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
 
 - Shared human–AI control over notes + seven timbral knobs
@@ -224,6 +200,8 @@ First of the two-way, USB-MIDI synths. This is where it got musically interestin
 :::notes
 Cranking the call-and-response switch-over down to 0.1 seconds was the pivotal move; it becomes interleaving rather than turn-taking. On the S-1 the tiny keyboard pushed me towards parameter play, letting the AI handle notes.
 :::
+
+## The Intelligent S-1 (sound!){ background-video="video/3-intelligent-s-1.mp4" background-video-loop="true" background-size="cover"}
 
 ## The Intelligent DAW {background-video="video/4-intelligent-daw.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
 
@@ -235,6 +213,8 @@ Cranking the call-and-response switch-over down to 0.1 seconds was the pivotal m
 Remapping as design. DAWs are highly configurable on the MIDI side, so the combination is a fast design playground. The important experience: I could move AI signals to wherever they were musically useful and completely change the instrument's sound with the same trained model, untouched.
 :::
 
+## The Intelligent DAW (sound) {background-video="video/4-intelligent-daw.mp4" background-video-loop="true" background-size="cover"}
+
 ## The Intelligent Setup { background-video="video/5-intelligent-setup.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
 
 - AI mediates between devices: S-1 + X-Touch Mini, then S-1 + QuNeo
@@ -245,19 +225,21 @@ Remapping as design. DAWs are highly configurable on the MIDI side, so the combi
 Multiple interfaces, one model. The mapping capability grew until the AI sat between multiple interfaces, each capable of input and output. The QuNeo setup finally felt like a comfortable, expressive instrument used in three festival performances with very different ensembles, from sparse acoustic textures to walls of noise. Visual feedback was what made the unruly instrument manageable.
 :::
 
-## 15 performances, recordings, and demonstrations {.small-table}
+## The Intelligent Setup { background-video="video/5-intelligent-setup.mp4" background-video-loop="true" background-size="cover"}
+
+## 15 performances and recordings {.small-table}
 
 | Date | Type | Config | Intelligent Instrument |
 |------|------|--------|------------------------|
 | Feb 2024 | Recording | Solo | Volca |
 | May 2024 | Recording | Solo | MicroFreak |
-| May 2024 | Performance | Group\* | MicroFreak, DAW (AUM, Live) |
+| May 2024 | Performance | Group | MicroFreak, DAW (AUM, Live) |
 | Jun 2024 | Performance | Duo | MicroFreak |
 | Jun 2024 | Performance | Group | MicroFreak |
 | Sep 2024 | Performance | Solo | MicroFreak, S-1 |
 | Sep 2024 | Performance | Duo | MicroFreak |
 | Oct 2024 | Performance | Group | S-1 |
-| Dec 2024 | Recording | Duo\* | DAW (AUM, Live) |
+| Dec 2024 | Recording | Duo | DAW (AUM, Live) |
 | Jan 2025 | Recording | Solo | S-1, DAW |
 | Aug 2025 | Performance | Group | S-1, DAW |
 | Nov 2025 | Performance | Duo | Setup (S-1/xTouch) |
@@ -265,9 +247,7 @@ Multiple interfaces, one model. The mapping capability grew until the AI sat bet
 | Dec 2025 | Recording | Duo | Setup (S-1/QuNeo) |
 | Jan 2026 | Performance | Group | Setup (S-1/QuNeo) |
 
-\* more than one performer used an intelligent instrument; other duo/group performances paired one intelligent instrument (the author) with acoustic or conventional electronic instruments.
-
-# Four design insights
+## Design insights {background-image="img/intelligent-daw-aum-dhg.jpg"}
 
 ## 1. (Re)mapping can replace retraining
 
@@ -343,11 +323,13 @@ Remapping is sustainable and responsive design iteration.
 
 Make it an app! Stop using Raspberry Pis!
 
-## Available Now from the Apple App Store
+<!-- ## Available Now from the Apple App Store
 
 ![](img/impsy-macos-trio-dark.png){width=75%}
 
-Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit.
+Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit. -->
+
+## IMPSY AUv3 {background-video="video/6-impsy-auv3.mp4" background-video-loop="true" background-size="cover"}
 
 ## Conclusions
 
@@ -367,3 +349,21 @@ Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit.
 :::
 
 ## References
+
+
+<!-- ## About Charles 🤖🎶🥁📝
+
+:::::::::::::: {.columns}
+::: {.column width="60%"}
+**Charles Martin**
+
+- computer scientist, music technology researcher, performer
+- postdoc at UiO 2016--2019 (EPEC Project)
+- Senior Lecturer at Australian National University, School of Computing
+- **researching** human-AI creative collaboration, including creating new ML models, new musical instruments, HCI and artistic research in musical collaboration
+- **teaching** HCI, music computing, systems, creative coding, etc.
+:::
+::: {.column width="40%"}
+![Charles playing synths](img/charles-soundout.jpg)
+:::
+:::::::::::::: -->
