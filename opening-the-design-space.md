@@ -1,8 +1,8 @@
 ---
 title: "Opening the Design Space"
 subtitle: "Two Years of Performance with Intelligent Musical Instruments"
-author: Charles Patrick Martin — The Australian National University
-date: "NIME '26: London, June 2026"
+author: Charles Patrick Martin, The Australian National University
+date: "NIME2026"
 # Loaded here (not via pandoc --include-in-header) because a command-line
 # header-includes overrides this metadata field, which would silently drop the
 # beamer-background.lua filter's preamble. The Makefile adds the slides dir to
@@ -19,14 +19,14 @@ title-slide-attributes:
 ## Generative AI is all over music, but mostly not in instruments
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 - We're aware of the threats and concerns about _AI generated music_.
 - But few digital musical instruments integrate generative AI into *long-term musical practice* [@jourdan_nime_ml_review]
 - Many musical AI tools aren't artist-centred: hard to experiment with, embed, modify (exceptions: RAVE, Wekinator)
 
 :::
-::: {.column width="40%"}
+::: {.column width="50%"}
 ![](img/soundout2026-7.jpg)
 :::
 ::::::::::::::
@@ -34,7 +34,9 @@ title-slide-attributes:
 <!-- _Exceptions:_ RAVE, IML system (?), Wekinator. -->
 <!-- TODO links and cites for RAVE, iml, wekinator -->
 
-**Question:** what does the design space for intelligent musical instruments look like when *accessible and portable* AI is available for artistic exploration?
+**Question:** what does the design space for intelligent musical instruments look like when *approachable and portable* AI is available for artistic exploration?
+
+What can self-contained intelligent musical instruments look like?
 
 <!-- Another question, can genAI be integrated into portable, electronic music setups? -->
 
@@ -45,15 +47,15 @@ Hook: everyone is talking about generative AI music, but where are the instrumen
 ## What's an *intelligent* musical instrument?
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 
-- An instrument where an AI system **generates actions independently** of the musician's actions
+- Definition for this paper: An instrument where an AI system **generates actions independently** of the musician's actions
 - Includes Continuator [@Pachet:2003wd] and Voyager [@Lewis:2000fu]
 - Excludes mapping-only systems like Wekinator [@fiebrink_meta-instrument_2009]
 - This work takes a **small-data** approach [@Vigliensoni:2022]: artists collect, curate, train, and deploy their own AI
 
 :::
-::: {.column width="40%"}
+::: {.column width="50%"}
 ![](img/garage-concert-arturia.jpg)
 :::
 ::::::::::::::
@@ -67,7 +69,7 @@ The definition matters: AI acting independently, not just interpreting sensor da
 ## The platform: IMPSY 
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="40%"}
 
 - "Squeeze Generative AI into a MIDI Plug"
 - Python software + Raspberry Pi + custom OS image [@impsy_software_zenodo]
@@ -77,9 +79,9 @@ The definition matters: AI acting independently, not just interpreting sensor da
 **Howto:** Flash an SD card, configure in a web browser, plug in and play.
 
 :::
-::: {.column width="40%"}
+::: {.column width="60%"}
 
-![](img/gen-ai-system-diagram.png)
+![](img/gen-ai-system-diagram-light-on-dark.png)
 
 :::
 ::::::::::::::
@@ -88,10 +90,11 @@ The definition matters: AI acting independently, not just interpreting sensor da
 The platform is deliberately minimal: it doesn't produce audio, it controls other instruments. That's what lets it retrofit existing synths and DAWs. Pre-installed OS image means no Python wrangling for users, boot and go.
 :::
 
-## The AI model: small but musical
+## AI model: mixture density recurrent neural network (MDRNN)
 
 - Mixture density recurrent neural network (MDRNN) [@Martin2019]
 - Generates tuples: 1–8 musical values **plus a time delta** (free rhythm, no grid)
+- Created to model embodied musical data, e.g., turning knobs on synth
 - Typical model: 2 layers of 64 LSTM units. *Tiny* by genAI standards
 - Trains in **under 30 minutes** on a normal laptop, from artist-collected data
 
@@ -99,17 +102,19 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 
 ::::::::::::::{.columns}
 
-:::{.column width="55%"}
+:::{.column width="50%"}
 
 - IMPSY runs on any 64-bit Raspberry Pi, including the **Zero 2 W (15 USD)**, small enough to hide inside an instrument
 - MIDI via USB interface, direct USB-MIDI, or two resistors on the UART pins
 - Web interface for mappings, logged data, and model upload
 
+![](img/impsy-web-interface-2026.png){width="40%" style="display: block; margin: 0 auto;"}
+
 :::
 
-:::{.column width="45%"}
+:::{.column width="50%"}
 
-![](img/impsy-web-interface-2026.png)
+![Generative AI in a MIDI plug](img/rpi-zero-midi-plug.jpg)
 
 :::
 
@@ -127,7 +132,7 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 Quantitative testing isn't the focus, but the headline is: even the cheapest Pi is comfortably inside the 10ms benchmark from earlier work. Boot time turned out to matter more than inference time in practice, it shapes how you trust a system at a gig.
 :::
 
-## Two years of performances with five instruments
+## Two years of performances, five instruments {background-image="img/soundout2026-7.jpg" background-opacity=0.5}
 
 - Autobiographical design: instruments built for **my own performance practice** and tested in real gigs
 - 15 performances and recordings (2024--2026); solo, duo, and group free improvisation
@@ -252,7 +257,7 @@ Multiple interfaces, one model. The mapping capability grew until the AI sat bet
 ## 1. (Re)mapping can replace retraining
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 - Changing how the model connects to controls and parameters opened new instruments *without touching the model*
 - Retraining costs minutes to hours (or days for audio models); remapping is instant
@@ -261,7 +266,7 @@ Multiple interfaces, one model. The mapping capability grew until the AI sat bet
 Remapping is sustainable and responsive design iteration.
 
 :::
-::: {.column width="40%"}
+::: {.column width="50%"}
 
 ![](img/s-1-midi-mapping-toml.jpg)
 
@@ -271,7 +276,7 @@ Remapping is sustainable and responsive design iteration.
 ## 2. Fast interleaving is a co-creative strategy
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 - 0.1 s switch-over between human and AI control: a new interaction approach
 - Not a separate "agent"; more like a **free-running process** you guide but don't fully control
@@ -280,7 +285,7 @@ Remapping is sustainable and responsive design iteration.
 **Musically productive and fun**
 
 :::
-::: {.column width="40%"}
+::: {.column width="50%"}
 ![](img/impsy-s-1-square.jpg)
 :::
 ::::::::::::::
@@ -288,14 +293,14 @@ Remapping is sustainable and responsive design iteration.
 ## 3. Small-data models are transportable components
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="40%"}
 
-- **One model**, trained once on my own data, served all five instruments
-- Like a trusted effects pedal: a design component you get to know over years
+- **One model**, trained once on my own data, used in the last four instruments
+- Like a *trusted effects pedal*: a design component you get to know over years
 - Challenges the assumption that AI needs unethically sourced data and unsustainable compute
 
 :::
-::: {.column width="40%"}
+::: {.column width="60%"}
 ![](img/intelligent-daw-aum-dhg.jpg)
 :::
 ::::::::::::::
@@ -303,25 +308,31 @@ Remapping is sustainable and responsive design iteration.
 ## 4. Cheap hardware lowers barriers
 
 :::::::::::::: {.columns}
-::: {.column width="60%"}
+::: {.column width="40%"}
 
 - Works on a 15 USD computer: multiple Pis for group performances, loans, dedicated instruments
 - MIDI lets you **retrofit existing instruments** rather than build new ones
 - Inclusion *and* sustainability: reuse what musicians already own
 
 :::
-::: {.column width="40%"}
+::: {.column width="60%"}
 
-![](img/rpi-zero-midi-plug.jpg)
+![](img/outside-1.jpg)
 
 :::
 ::::::::::::::
 
-## What's next? 
+## Conclusions { background-video="video/3-intelligent-s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.4}
 
-![](img/impsy-app-ableton.png){width=75%}
+- A platform for prototyping intelligent musical instruments that is cheap, small, and artist-centred
+- Five instruments, 15 performances, two years of practice
+- Insights to **keep opening** the design space remapping, interleaving, transportable models, accessible hardware
+- Next: model evolution over time, and co-design with other artists
 
-Make it an app! Stop using Raspberry Pis!
+**Please go make more intelligent musical instruments, I'd like to see and hear them!**
+
+## What's next? Make it an app! { background-video="video/7-impsy-ableton.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=1}
+
 
 <!-- ## Available Now from the Apple App Store
 
@@ -331,19 +342,13 @@ Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit. -->
 
 ## IMPSY AUv3 {background-video="video/6-impsy-auv3.mp4" background-video-loop="true" background-size="cover"}
 
-## Conclusions
-
-- A platform for prototyping intelligent musical instruments that is cheap, small, and artist-centred
-- Five instruments, 15 performances, two years of practice
-- The design space is **still opening**: remapping, interleaving, transportable models, accessible hardware
-- Next: model evolution over time, and co-design with other artists
-
 ## Thanks!
 
 ::: {.questions}
 **Questions?**
 
-- Software: <https://github.com/cpmpercussion/impsy>
+- Homepage: <https://charlesmartin.au/impsy>
+- Try the web app! <https://charlesmartin.au/impsy-web/>
 - Videos: <https://doi.org/10.5281/zenodo.19550146>
 - charles.martin@anu.edu.au
 :::
