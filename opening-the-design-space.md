@@ -125,13 +125,11 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 - MIDI via USB interface, direct USB-MIDI, or two resistors on the UART pins
 - Web interface for mappings, logged data, and model upload
 
-<!-- TODO: new web interface screenshot. -->
-
 :::
 
 :::{.column width="45%"}
 
-![](img/impsy-web-interface.png)
+![](img/impsy-web-interface-2026.png)
 
 :::
 
@@ -172,7 +170,21 @@ background-video-loop / -muted keep the footage running silently behind the
 name; background-size="cover" fills the frame.
 -->
 
-## The Intelligent Volca {.instrument background-video="video/1-intelligent-volca.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent Volca {background-video="video/1-intelligent-volca.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
+
+:::::::::::::: {.columns}
+::: {.column width="60%"}
+
+- Pi Zero, two resistors, UART MIDI, into a battery-powered Korg Volca FM
+- AI controlled pitch and rhythm; human controls timbre
+- One-way only. The Volca FM has no MIDI out
+- Glissandi from a model trained on continuous gesture (a bit weird)s
+
+:::
+::: {.column width="40%"}
+
+:::
+::::::::::::::
 
 :::notes
 Proof of concept — the rejected NIME 2024 demo. First experiment, fully self-contained and battery powered; the Volca even has its own speaker. The key realisation: the model, trained on expressive continuous control, might be better at smoothly varying synthesis parameters than at playing notes.
@@ -184,48 +196,76 @@ Slide points:
 - Glissandi from a model trained on continuous gesture (a bit weird)
 :::
 
-## The Intelligent MicroFreak {.instrument background-video="video/2-intelligent-microfreak.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent MicroFreak {background-video="video/2-intelligent-microfreak.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
+
+:::::::::::::: {.columns}
+::: {.column width="60%"}
+
+- USB-MIDI synths enable shared human–AI control: notes + seven timbral knobs
+- Call-and-response: AI takes over when I stop… switch-over set to 0.1 s
+- AI turns many knobs at once: inhuman but exciting exploration of a synth
+
+:::
+::: {.column width="40%"}
+
+:::
+::::::::::::::
 
 :::notes
 First of the two-way, USB-MIDI synths. This is where it got musically interesting: the AI updates timbral parameters between phrases and even between notes, something I'd never do playing normally.
 
-Slide points:
-- USB-MIDI synths enable shared human–AI control: notes + seven timbral knobs
-- Call-and-response: AI takes over when I stop… switch-over set to 0.1 s
-- AI turns many knobs at once: inhuman but exciting exploration of a synth
 :::
 
-## The Intelligent S-1 {.instrument background-video="video/3-intelligent-s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent S-1 { background-video="video/3-intelligent-s-1.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
+
+- Shared human–AI control over notes + seven timbral knobs
+- Tiny keyboard led to focus on parameters, AI handling the notes
 
 :::notes
 Cranking the call-and-response switch-over down to 0.1 seconds was the pivotal move; it becomes interleaving rather than turn-taking. On the S-1 the tiny keyboard pushed me towards parameter play, letting the AI handle notes.
-
-Slide points:
-- Shared human–AI control over notes + seven timbral knobs
-- Tiny keyboard nudged me toward parameter play, AI handling the notes
 :::
 
-## The Intelligent DAW {.instrument background-video="video/4-intelligent-daw.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent DAW {background-video="video/4-intelligent-daw.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
 
-:::notes
-Remapping as design. DAWs are highly configurable on the MIDI side, so the combination is a fast design playground. The important experience: I could move AI signals to wherever they were musically useful and completely change the instrument's sound with the same trained model, untouched.
-
-Slide points:
 - AUM on iPad connected to the Pi over a cheap USB MIDI interface
 - 8 channels in, 8 out, routed freely to software synths and effects
 - Swap synths, remap signals, evolve the instrument without retraining
+
+:::notes
+Remapping as design. DAWs are highly configurable on the MIDI side, so the combination is a fast design playground. The important experience: I could move AI signals to wherever they were musically useful and completely change the instrument's sound with the same trained model, untouched.
 :::
 
-## The Intelligent Setup {.instrument background-video="video/5-intelligent-setup.mp4" background-video-loop="true" background-video-muted="true" background-size="cover"}
+## The Intelligent Setup { background-video="video/5-intelligent-setup.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.5}
+
+- AI mediates between devices: S-1 + X-Touch Mini, then S-1 + QuNeo
+- LED rings / touch strips: visual feedback on what the AI is doing
+- Different control gestures: ways to manage the unfolding AI process
 
 :::notes
 Multiple interfaces, one model. The mapping capability grew until the AI sat between multiple interfaces, each capable of input and output. The QuNeo setup finally felt like a comfortable, expressive instrument used in three festival performances with very different ensembles, from sparse acoustic textures to walls of noise. Visual feedback was what made the unruly instrument manageable.
-
-Slide points:
-- AI mediates between devices: S-1 + X-Touch Mini, then S-1 + QuNeo
-- LED rings / touch strips = visual feedback on what the AI is doing
-- Different control gestures = different ways to manage the unfolding AI process
 :::
+
+## 15 performances, recordings, and demonstrations {.small-table}
+
+| Date | Type | Config | Intelligent Instrument |
+|------|------|--------|------------------------|
+| Feb 2024 | Recording | Solo | Volca |
+| May 2024 | Recording | Solo | MicroFreak |
+| May 2024 | Performance | Group\* | MicroFreak, DAW (AUM, Live) |
+| Jun 2024 | Performance | Duo | MicroFreak |
+| Jun 2024 | Performance | Group | MicroFreak |
+| Sep 2024 | Performance | Solo | MicroFreak, S-1 |
+| Sep 2024 | Performance | Duo | MicroFreak |
+| Oct 2024 | Performance | Group | S-1 |
+| Dec 2024 | Recording | Duo\* | DAW (AUM, Live) |
+| Jan 2025 | Recording | Solo | S-1, DAW |
+| Aug 2025 | Performance | Group | S-1, DAW |
+| Nov 2025 | Performance | Duo | Setup (S-1/xTouch) |
+| Nov 2025 | Performance | Duo | Setup (S-1/QuNeo) |
+| Dec 2025 | Recording | Duo | Setup (S-1/QuNeo) |
+| Jan 2026 | Performance | Group | Setup (S-1/QuNeo) |
+
+\* more than one performer used an intelligent instrument; other duo/group performances paired one intelligent instrument (the author) with acoustic or conventional electronic instruments.
 
 # Four design insights
 

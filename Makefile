@@ -4,6 +4,8 @@
 PANDOC     = pandoc
 OUTPUT_DIR = build
 REFERENCES = references.bib
+MAIN_MD    = opening-the-design-space.md
+MAIN_HTML  = $(OUTPUT_DIR)/index.html
 
 SLIDE_MDS    = $(wildcard *.md)
 REVEAL_HTMLS = $(patsubst %.md,$(OUTPUT_DIR)/%.html,$(SLIDE_MDS))
@@ -51,6 +53,12 @@ all: reveal beamer
 
 .PHONY: reveal
 reveal: $(OUTPUT_DIR) images videos $(OUTPUT_DIR)/reveal_dark.css $(REVEAL_HTMLS)
+
+.PHONY: html
+html: reveal $(MAIN_HTML)
+
+$(MAIN_HTML): $(MAIN_MD) $(REFERENCES)
+	$(PANDOC) $(PANDOC_COMMON_OPTS) $(REVEAL_OPTS) $< -o $@
 
 $(OUTPUT_DIR)/%.html: %.md $(REFERENCES)
 	$(PANDOC) $(PANDOC_COMMON_OPTS) $(REVEAL_OPTS) $< -o $@
