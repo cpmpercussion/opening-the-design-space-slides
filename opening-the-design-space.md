@@ -354,6 +354,9 @@ Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit. -->
 - Try the web app! <https://charlesmartin.au/impsy-web/>
 - Videos: <https://doi.org/10.5281/zenodo.19550146>
 - charles.martin@anu.edu.au
+
+**Performance:** Tonight at 20:27! ["回溯：Co-constructing a Dual Feedback Apparatus"](https://nime2026.org/proceedings/199.html).
+
 :::
 
 :::
