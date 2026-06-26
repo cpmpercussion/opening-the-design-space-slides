@@ -51,7 +51,8 @@ jobs:
                   pgfopts \
                   beamercolorthemeowl \
                   noto \
-                  noto-emoji
+                  noto-emoji \
+                  noto-cjk
 
       - name: Install Dart Sass
         run: |

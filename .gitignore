@@ -1,2 +1,16 @@
 build/
 .DS_Store
+
+# LaTeX compile byproducts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+*.synctex.gz

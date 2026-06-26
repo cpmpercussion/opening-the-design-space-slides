@@ -1,6 +1,7 @@
 {
   "liveServer.settings.port": 5501,
   "liveServer.settings.root": "/build",
+  "latex-workshop.latex.autoBuild.run": "never",
   "emeraldwalk.runonsave": {
     "commands": [
       {

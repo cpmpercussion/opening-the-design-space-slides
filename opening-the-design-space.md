@@ -373,7 +373,6 @@ Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit. -->
 
 ## References
 
-
 <!-- ## About Charles 🤖🎶🥁📝
 
 :::::::::::::: {.columns}

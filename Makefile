@@ -39,7 +39,7 @@ BEAMER_OPTS = -t beamer \
               -V colortheme=owl \
               --pdf-engine=lualatex \
               -V mainfont="Noto Sans" \
-              -V mainfontfallback="NotoColorEmoji:mode=harf" \
+              -V mainfontfallback="Noto Sans CJK SC:mode=harf;NotoColorEmoji:mode=harf" \
               --lua-filter=filters/beamer-background.lua
 
 # beamer-sanzo288.tex is loaded via the markdown's header-includes (see the
