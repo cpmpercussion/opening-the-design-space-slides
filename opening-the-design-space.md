@@ -342,7 +342,10 @@ Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit. -->
 
 ## IMPSY AUv3 {background-video="video/6-impsy-auv3.mp4" background-video-loop="true" background-size="cover"}
 
-## Thanks!
+## Thanks! { background-video="video/9-coconstructing.mp4" background-video-loop="true" background-video-muted="true" background-size="cover" background-opacity=0.4}
+
+:::::::::::::: {.columns}
+::: {.column width="65%"}
 
 ::: {.questions}
 **Questions?**
@@ -352,6 +355,14 @@ Available for MacOS and iOS. Host App with MIDI I/O, AUv3 midi fx unit. -->
 - Videos: <https://doi.org/10.5281/zenodo.19550146>
 - charles.martin@anu.edu.au
 :::
+
+:::
+::: {.column width="35%"}
+
+![](img/qr-impsy.png){width="75%" style="display: block; margin: 0 auto;"}
+
+:::
+::::::::::::::
 
 ## References
 
