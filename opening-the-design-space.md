@@ -90,14 +90,6 @@ The definition matters: AI acting independently, not just interpreting sensor da
 The platform is deliberately minimal: it doesn't produce audio, it controls other instruments. That's what lets it retrofit existing synths and DAWs. Pre-installed OS image means no Python wrangling for users, boot and go.
 :::
 
-## AI model: mixture density recurrent neural network (MDRNN)
-
-- Mixture density recurrent neural network (MDRNN) [@Martin2019]
-- Generates tuples: 1–8 musical values **plus a time delta** (free rhythm, no grid)
-- Created to model embodied musical data, e.g., turning knobs on synth
-- Typical model: 2 layers of 64 LSTM units. *Tiny* by genAI standards
-- Trains in **under 30 minutes** on a normal laptop, from artist-collected data
-
 ## Cheap, small, battery-powered
 
 ::::::::::::::{.columns}
@@ -120,7 +112,15 @@ The platform is deliberately minimal: it doesn't produce audio, it controls othe
 
 ::::::::::::::
 
-## Is it fast enough?
+## AI model: mixture density recurrent neural network (MDRNN)
+
+- Mixture density recurrent neural network (MDRNN) [@Martin2019]
+- Generates tuples: 1–8 musical values **plus a time delta** (free rhythm, no grid)
+- Created to model embodied musical data, e.g., turning knobs on synth
+- Typical model: 2 layers of 64 LSTM units. *Tiny* by genAI standards
+- Trains in **under 30 minutes** on a normal laptop, from artist-collected data
+
+## Is it fast enough? {background-color="#fff"}
 
 ![Average per-sample inference with model sizes up to 512 LSTM units.](img/prediction_time_against_units_facet_log.png){width=75%}
 
@@ -134,8 +134,9 @@ Quantitative testing isn't the focus, but the headline is: even the cheapest Pi 
 
 ## Two years of performances, five instruments {background-image="img/soundout2026-7.jpg" background-opacity=0.5}
 
-- Autobiographical design: instruments built for **my own performance practice** and tested in real gigs
-- 15 performances and recordings (2024--2026); solo, duo, and group free improvisation
+- Autobiographical design: instruments built for **my own performance practice** and tested at gigs
+- 15 performances and recordings (2024--2026)
+- solo, duo, and group free improvisation
 - Five intelligent instruments: **Volca, MicroFreak, S-1, DAW, Setup**
 - Demo videos: <https://doi.org/10.5281/zenodo.19550146>
 
@@ -158,10 +159,12 @@ name; background-size="cover" fills the frame.
 :::::::::::::: {.columns}
 ::: {.column width="60%"}
 
-- Pi Zero, two resistors, UART MIDI, into a battery-powered Korg Volca FM
+- Pi Zero, two resistors, UART MIDI + a battery-powered Korg Volca FM
 - AI controlled pitch and rhythm; human controls timbre
 - One-way only. The Volca FM has no MIDI out
-- Glissandi from a model trained on continuous gesture (a bit weird)s
+- Glissandi from a model trained on continuous gesture.
+
+Verdict: ok, but a bit weird
 
 :::
 ::: {.column width="40%"}
@@ -181,7 +184,8 @@ Proof of concept — the rejected NIME 2024 demo. First experiment, fully self-c
 ::: {.column width="60%"}
 
 - USB-MIDI synths enable shared human–AI control: notes + seven timbral knobs
-- Call-and-response: AI takes over when I stop… switch-over set to 0.1 s
+- Call-and-response: AI takes over when I stop playing 
+- switch-over set to **0.1 s**
 - AI turns many knobs at once: inhuman but exciting exploration of a synth
 
 :::
